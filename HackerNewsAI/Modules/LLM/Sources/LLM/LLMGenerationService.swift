@@ -75,7 +75,7 @@ public actor LLMGenerationService {
         }
         let model = AnthropicLanguageModel(
             apiKey: apiKey,
-            model: "claude-sonnet-4-5-20250929"
+            model: "claude-sonnet-4-6"
         )
         let session = LanguageModelSession(model: model)
         let response = try await session.respond(to: prompt)

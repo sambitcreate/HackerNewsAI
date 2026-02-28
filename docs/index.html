@@ -184,6 +184,82 @@
             color: var(--text-secondary);
         }
 
+        /* Telegram Bot */
+        .telegram-bot {
+            padding: 60px 0;
+        }
+
+        .telegram-card {
+            background: var(--card-bg);
+            border: 1px solid #E8E8E8;
+            border-radius: 16px;
+            padding: 40px;
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .telegram-card-icon {
+            font-size: 64px;
+            flex-shrink: 0;
+        }
+
+        .telegram-card-content h3 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .telegram-card-content p {
+            font-size: 15px;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+        }
+
+        .telegram-features {
+            list-style: none;
+            margin-bottom: 20px;
+        }
+
+        .telegram-features li {
+            font-size: 14px;
+            color: var(--text-secondary);
+            padding: 3px 0;
+        }
+
+        .telegram-features li::before {
+            content: "✓ ";
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .telegram-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            background: #2AABEE;
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 15px;
+            transition: background 0.2s;
+        }
+
+        .telegram-button:hover {
+            background: #229ED9;
+        }
+
+        @media (max-width: 600px) {
+            .telegram-card {
+                flex-direction: column;
+                text-align: center;
+                padding: 28px;
+                gap: 20px;
+            }
+        }
+
         /* Footer */
         footer {
             text-align: center;
@@ -281,6 +357,29 @@
                     <h4>Claude (Anthropic)</h4>
                     <p>Cloud API with excellent quality summaries</p>
                     <span class="provider-tag">API key required</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="telegram-bot">
+        <div class="container">
+            <h2 class="section-title">Telegram Bot</h2>
+            <div class="telegram-card">
+                <div class="telegram-card-icon">🤖</div>
+                <div class="telegram-card-content">
+                    <h3>HackerNews AI Digest</h3>
+                    <p>Get AI-curated Hacker News digests delivered straight to your Telegram. Powered by Claude.</p>
+                    <ul class="telegram-features">
+                        <li>Scheduled daily digests with top stories</li>
+                        <li>On-demand summaries via /digest</li>
+                        <li>Configurable frequency and delivery time</li>
+                        <li>English and Russian languages</li>
+                    </ul>
+                    <a href="https://t.me/HackerNewsAI_bot" class="telegram-button">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+                        Open in Telegram
+                    </a>
                 </div>
             </div>
         </div>

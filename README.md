@@ -60,6 +60,7 @@ The app follows MVVM architecture with feature-based organization:
 ## Related Projects
 
 - [HackerNewsAI CLI](https://github.com/n0an/hackernewsai-cli) — Terminal UI version with AI digest, built with Go and Bubble Tea
+- [HackerNewsAI Telegram Bot](https://t.me/HackerNewsAI_bot) — Daily AI-curated digests delivered to Telegram
 
 ## License
 

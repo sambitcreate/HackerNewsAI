@@ -57,6 +57,10 @@ The app follows MVVM architecture with feature-based organization:
 - **Features** — Feed, Comments, Summary, Settings
 - **Modules/LLM** — Swift Package abstracting LLM providers
 
+## Related Projects
+
+- [HackerNewsAI CLI](https://github.com/n0an/hackernewsai-cli) — Terminal UI version with AI digest, built with Go and Bubble Tea
+
 ## License
 
 MIT License

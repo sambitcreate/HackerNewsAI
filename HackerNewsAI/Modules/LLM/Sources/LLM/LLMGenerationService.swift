@@ -59,8 +59,44 @@ public actor LLMGenerationService {
 
     private func generateWithFoundationModel(prompt: String) async throws -> String {
         if #available(macOS 26.0, iOS 26.0, *) {
-            let session = LanguageModelSession(model: SystemLanguageModel.default)
-            let response = try await session.respond(to: prompt)
+            let model = SystemLanguageModel.default
+            
+            // Check model availability status
+            switch model.availability {
+            case .available:
+                break
+            case .unavailable(let reason):
+                let reasonDescription: String
+                switch reason {
+                case .deviceNotEligible:
+                    reasonDescription = "This device is not eligible for Apple Intelligence."
+                case .appleIntelligenceNotEnabled:
+                    reasonDescription = "Apple Intelligence is not enabled. Please enable it in system settings."
+                case .modelNotReady:
+                    reasonDescription = "The on-device model is downloading or not ready yet. Please try again shortly."
+                @unknown default:
+                    reasonDescription = "On-device model is currently unavailable (\(reason))."
+                }
+                throw NSError(
+                    domain: "LLMGenerationError",
+                    code: 2,
+                    userInfo: [NSLocalizedDescriptionKey: reasonDescription]
+                )
+            }
+
+            // Dynamically query context size
+            let budget = model.contextSize
+            print("[AnyLanguageModel] SystemLanguageModel budget: \(budget) tokens")
+
+            // Configure generation options using OS 27 properties
+            let options = GenerationOptions(
+                samplingMode: .greedy,
+                temperature: 0.0,
+                maximumResponseTokens: 4096
+            )
+
+            let session = LanguageModelSession(model: model)
+            let response = try await session.respond(to: prompt, options: options)
             return response.content
         } else {
             throw LLMError.foundationModelsUnavailable

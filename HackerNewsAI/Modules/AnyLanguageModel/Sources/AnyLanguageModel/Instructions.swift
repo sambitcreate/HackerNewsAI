@@ -1,3 +1,5 @@
+import Foundation
+
 /// Instructions define the model's intended behavior on prompts.
 ///
 /// Instructions are typically provided by you to define the role and behavior of the model. In the code below,

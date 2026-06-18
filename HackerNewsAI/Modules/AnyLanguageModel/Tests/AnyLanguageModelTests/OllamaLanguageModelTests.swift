@@ -1,3 +1,4 @@
+#if canImport(Testing) && canImport(AnyLanguageModel)
 import Foundation
 import Testing
 
@@ -137,3 +138,5 @@ struct OllamaLanguageModelTests {
         #expect(!response.content.isEmpty)
     }
 }
+
+#endif

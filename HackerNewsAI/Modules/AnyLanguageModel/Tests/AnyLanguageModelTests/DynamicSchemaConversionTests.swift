@@ -1,3 +1,4 @@
+#if canImport(Testing) && canImport(AnyLanguageModel)
 import Testing
 
 @testable import AnyLanguageModel
@@ -405,4 +406,6 @@ import Testing
             _ = FoundationModels.GenerationSchema(schema)
         }
     }
+#endif
+
 #endif

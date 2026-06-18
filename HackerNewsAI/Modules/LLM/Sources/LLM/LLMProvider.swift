@@ -18,8 +18,8 @@ public enum LLMProvider: String, CaseIterable, Sendable {
 
     public var description: String {
         switch self {
-        case .onDevice: return "Uses Apple's Foundation Models. Free, private, requires iOS 26+."
-        case .mlx: return "Uses MLX models on Apple Silicon. Free, private, downloads model once."
+        case .onDevice: return "Uses Apple Intelligence on-device. Free and private. Requires iOS 26+/macOS 26+ with Apple Intelligence enabled."
+        case .mlx: return "Uses MLX models on macOS Apple Silicon. Free, private, downloads model once."
         case .anthropic: return "Uses Claude API. Requires API key, best quality."
         }
     }
@@ -30,7 +30,10 @@ public enum LLMProvider: String, CaseIterable, Sendable {
 
     /// Providers available on current platform
     public static var availableOnCurrentPlatform: [LLMProvider] {
-        // MLX works on both macOS and iOS with Apple Silicon
+        #if os(macOS)
         return allCases
+        #else
+        return [.onDevice, .anthropic]
+        #endif
     }
 }

@@ -42,7 +42,7 @@ public struct AnthropicLanguageModel: LanguageModel {
     ///     stopSequences: ["END", "STOP"]
     /// )
     /// ```
-    public struct CustomGenerationOptions: AnyLanguageModel.CustomGenerationOptions, Codable {
+    public struct CustomGenerationOptions: LanguageModelCustomGenerationOptions, Codable {
         /// Use nucleus sampling with probability mass `topP`.
         ///
         /// In nucleus sampling, tokens are sorted by probability and added to a

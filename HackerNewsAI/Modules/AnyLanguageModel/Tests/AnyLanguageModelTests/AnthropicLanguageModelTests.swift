@@ -1,3 +1,4 @@
+#if canImport(Testing) && canImport(AnyLanguageModel)
 import Foundation
 import Testing
 
@@ -118,3 +119,4 @@ struct AnthropicLanguageModelTests {
         #expect(!response.content.isEmpty)
     }
 }
+#endif

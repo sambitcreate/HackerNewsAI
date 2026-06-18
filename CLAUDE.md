@@ -48,11 +48,13 @@ Located at `HackerNewsAI/Modules/LLM/`. This is a local Swift Package that abstr
 
 - **LLMProvider**: Enum defining available providers (onDevice, mlx, anthropic)
 - **LLMConfiguration**: Settings for LLM generation
-- **LLMGenerationService**: Actor that handles generation across providers
+- **LLMGenerationService**: Actor that handles generation (one-shot and streaming) across providers, plus Apple Intelligence availability/budget probing
+- **FoundationModelRuntime**: The ONLY file that `import FoundationModels`. Direct adapter for the on-device backend (availability, `GenerationOptions`, streaming, context budget). All Foundation Models types are fully-qualified (`FoundationModels.SystemLanguageModel`, etc.) because the vendored AnyLanguageModel package redeclares colliding names.
+- **FoundationModelAvailability**: Foundation-Models-free, UI-safe availability enum surfaced to the app layer.
 - **MLXModelOption**: Available MLX model configurations
 
 Supports three LLM backends:
-1. **On-Device (Apple Foundation Models)** - iOS 26+/macOS 26+ only
+1. **On-Device (Apple Intelligence)** - Direct Foundation Models bridge. iOS 26+/macOS 26+ with Apple Intelligence enabled (OS 27 recommended). Availability-gated via `LLMGenerationService.foundationModelAvailability()`; responses stream; prompts are sized to the model's context budget. AnyLanguageModel is used only for the Anthropic backend.
 2. **MLX** - Local models on Apple Silicon (Qwen3, Llama 3.2)
 3. **Anthropic Claude** - Cloud API, requires API key
 

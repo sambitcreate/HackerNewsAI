@@ -10,11 +10,11 @@ struct CatchUpSummary {
     let generatedAt: Date
     let stories: [HNStory]
 
-    var isFirstVisit: Bool {
+    nonisolated var isFirstVisit: Bool {
         lastVisit == nil
     }
 
-    static func allCaughtUp(lastVisit: Date?, timeSince: String) -> CatchUpSummary {
+    nonisolated static func allCaughtUp(lastVisit: Date?, timeSince: String) -> CatchUpSummary {
         CatchUpSummary(
             summary: nil,
             storyCount: 0,

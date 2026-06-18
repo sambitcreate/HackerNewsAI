@@ -78,7 +78,7 @@ import Foundation
         ///     mirostat: .v2(tau: 5.0, eta: 0.1)
         /// )
         /// ```
-        public struct CustomGenerationOptions: AnyLanguageModel.CustomGenerationOptions, Codable {
+        public struct CustomGenerationOptions: LanguageModelCustomGenerationOptions, Codable {
             /// Context size to allocate for the model.
             public var contextSize: UInt32?
 
@@ -666,7 +666,7 @@ import Foundation
             return ResolvedGenerationOptions(
                 base: base,
                 overrides: options[custom: LlamaLanguageModel.self],
-                sampling: options.sampling,
+                sampling: options.samplingMode,
                 maximumResponseTokens: options.maximumResponseTokens
             )
         }

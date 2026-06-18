@@ -13,16 +13,20 @@ struct SummaryView: View {
     var body: some View {
         NavigationStack {
             Group {
-                if viewModel.isLoading {
-                    loadingView
-                } else if let error = viewModel.error {
-                    errorView(error: error)
+                if let unavailability = viewModel.unavailabilityReason {
+                    ModelUnavailableView(availability: unavailability)
+                } else if viewModel.error != nil {
+                    errorView(error: viewModel.error!)
                 } else if let summary = viewModel.summary {
                     if summary.isAllCaughtUp {
                         allCaughtUpView(summary)
                     } else {
                         summaryContent(summary)
                     }
+                } else if let streaming = viewModel.streamingText, !streaming.isEmpty {
+                    streamingView(streaming)
+                } else if viewModel.isLoading {
+                    loadingView
                 } else {
                     loadingView
                 }
@@ -167,6 +171,28 @@ struct SummaryView: View {
                     .cornerRadius(12)
                 }
                 .disabled(markedAsRead)
+            }
+            .padding()
+        }
+    }
+
+    /// Renders the in-progress (streaming) summary text as it arrives.
+    private func streamingView(_ text: String) -> some View {
+        ScrollView {
+            VStack(alignment: .leading, spacing: 16) {
+                HStack {
+                    ProgressView().controlSize(.small)
+                    Text("Generating…")
+                        .font(.subheadline)
+                        .foregroundStyle(.secondary)
+                }
+
+                // Show the raw partial text read-only. Markdown parsing would
+                // flicker on incomplete markup, so render plain for now.
+                Text(text)
+                    .font(.body)
+                    .foregroundStyle(.primary)
+                    .frame(maxWidth: .infinity, alignment: .leading)
             }
             .padding()
         }

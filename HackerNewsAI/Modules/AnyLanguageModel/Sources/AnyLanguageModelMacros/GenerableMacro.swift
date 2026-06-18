@@ -1,3 +1,4 @@
+#if canImport(SwiftCompilerPlugin) && canImport(SwiftSyntax) && canImport(SwiftSyntaxBuilder) && canImport(SwiftSyntaxMacros)
 import SwiftCompilerPlugin
 import SwiftSyntax
 import SwiftSyntaxBuilder
@@ -1327,3 +1328,4 @@ private struct PropertyInfo {
     let guides: [String]
     let pattern: String?
 }
+#endif

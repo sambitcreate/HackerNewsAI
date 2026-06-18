@@ -8,7 +8,7 @@ public protocol LanguageModel: Sendable {
     /// Models can define their own custom options types with extended properties
     /// by setting this to a custom type conforming to ``CustomGenerationOptions``.
     /// The default is `Never`, indicating no custom options are supported.
-    associatedtype CustomGenerationOptions: AnyLanguageModel.CustomGenerationOptions = Never
+    associatedtype CustomGenerationOptions: LanguageModelCustomGenerationOptions = Never
 
     var availability: Availability<UnavailableReason> { get }
 

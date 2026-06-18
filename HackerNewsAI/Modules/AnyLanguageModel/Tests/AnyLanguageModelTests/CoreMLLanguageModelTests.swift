@@ -1,3 +1,4 @@
+#if canImport(Testing) && canImport(AnyLanguageModel)
 import Foundation
 import Testing
 
@@ -167,3 +168,5 @@ import Testing
         }
     }
 #endif  // CoreML
+
+#endif

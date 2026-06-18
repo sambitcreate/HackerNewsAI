@@ -1,3 +1,4 @@
+#if canImport(Testing) && canImport(AnyLanguageModel)
 import Foundation
 import Testing
 
@@ -779,4 +780,6 @@ struct GeminiCustomOptionsTests {
             #expect(retrieved?.repeatLastN == 128)
         }
     }
+#endif
+
 #endif

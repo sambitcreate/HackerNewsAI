@@ -1,3 +1,4 @@
+#if canImport(Testing) && canImport(AnyLanguageModel)
 import Testing
 
 #if canImport(FoundationModels)
@@ -28,4 +29,6 @@ import Testing
         }
         #expect(hasSnapshots)
     }
+#endif
+
 #endif

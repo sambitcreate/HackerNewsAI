@@ -1,3 +1,4 @@
+#if canImport(SwiftSyntax) && canImport(SwiftSyntaxBuilder) && canImport(SwiftSyntaxMacros)
 import Foundation
 import SwiftSyntax
 import SwiftSyntaxBuilder
@@ -13,3 +14,4 @@ public struct GuideMacro: PeerMacro {
         return []
     }
 }
+#endif

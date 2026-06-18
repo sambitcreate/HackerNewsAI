@@ -1,3 +1,4 @@
+#if canImport(Testing) && canImport(AnyLanguageModel)
 import Testing
 
 @testable import AnyLanguageModel
@@ -261,3 +262,5 @@ struct MockLanguageModelTests {
         }
     }
 }
+
+#endif

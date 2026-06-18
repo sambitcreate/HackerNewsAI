@@ -26,7 +26,7 @@ public struct GeminiLanguageModel: LanguageModel {
     ///     serverTools: [.googleSearch]
     /// )
     /// ```
-    public struct CustomGenerationOptions: AnyLanguageModel.CustomGenerationOptions {
+    public struct CustomGenerationOptions: LanguageModelCustomGenerationOptions {
         /// Configures thinking (extended reasoning) behavior for Gemini models.
         ///
         /// Use this type to enable or configure thinking mode, which allows the model

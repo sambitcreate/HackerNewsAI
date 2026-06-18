@@ -54,7 +54,7 @@ public struct OpenAILanguageModel: LanguageModel {
     /// - Important: Custom sampling parameters in this type are sent directly to the API
     ///   and do not override equivalent settings in ``GenerationOptions``. Both values
     ///   will be included in the request if set; the API determines which takes precedence.
-    public struct CustomGenerationOptions: AnyLanguageModel.CustomGenerationOptions, Codable {
+    public struct CustomGenerationOptions: LanguageModelCustomGenerationOptions, Codable {
         // MARK: - Sampling Parameters
 
         /// An alternative to sampling with temperature, called nucleus sampling.

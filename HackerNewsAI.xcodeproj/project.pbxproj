@@ -18,6 +18,7 @@
 		1814AD6C2F2D1E1500DCC137 /* Exceptions for "HackerNewsAI" folder in "HackerNewsAI" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
+				Modules/AnyLanguageModel,
 				Modules/LLM,
 			);
 			target = 1814AD5B2F2D1CDB00DCC137 /* HackerNewsAI */;
@@ -287,6 +288,8 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_OUTGOING_NETWORK_CONNECTIONS = YES;
 				ENABLE_PREVIEWS = YES;
+				EXCLUDED_RECURSIVE_SEARCH_PATH_SUBDIRECTORIES = ".build Tests AnyLanguageModelMacros $(inherited)";
+				EXCLUDED_SOURCE_FILE_NAMES = Package.swift;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -297,10 +300,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/HackerNewsAI/Modules/AnyLanguageModel/.build/prebuilts/swift-syntax/600.0.1/swiftlang-6.2.4.1.4-MacroSupport-macos_aarch64/lib",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.sambitbiswas.hackernewsAI;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -331,6 +331,8 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_OUTGOING_NETWORK_CONNECTIONS = YES;
 				ENABLE_PREVIEWS = YES;
+				EXCLUDED_RECURSIVE_SEARCH_PATH_SUBDIRECTORIES = ".build Tests AnyLanguageModelMacros $(inherited)";
+				EXCLUDED_SOURCE_FILE_NAMES = Package.swift;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -341,10 +343,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/HackerNewsAI/Modules/AnyLanguageModel/.build/prebuilts/swift-syntax/600.0.1/swiftlang-6.2.4.1.4-MacroSupport-macos_aarch64/lib",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.sambitbiswas.hackernewsAI;
 				PRODUCT_NAME = "$(TARGET_NAME)";

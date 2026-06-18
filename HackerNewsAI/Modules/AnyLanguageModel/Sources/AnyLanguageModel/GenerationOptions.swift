@@ -92,14 +92,14 @@ public struct GenerationOptions: Sendable, Equatable, Codable {
     /// - Note: Leaving the `sampling` nil lets the system choose a
     ///   a reasonable default on your behalf.
     @available(*, deprecated, renamed: "samplingMode")
-    public var sampling: SamplingMode?
+    public var sampling: SamplingMode? {
+        get { samplingMode }
+        set { samplingMode = newValue }
+    }
 
     /// A sampling strategy for how the model picks tokens when generating a
     /// response.
-    public var samplingMode: SamplingMode? {
-        get { sampling }
-        set { sampling = newValue }
-    }
+    public var samplingMode: SamplingMode?
 
     /// A type that defines how the model selects tools during generation.
     public struct ToolCallingMode: Sendable, Equatable, Codable {
@@ -193,11 +193,11 @@ public struct GenerationOptions: Sendable, Equatable, Codable {
     ///     to produce before being artificially halted. Must be positive.
     @available(*, deprecated, renamed: "init(samplingMode:temperature:maximumResponseTokens:toolCallingMode:)")
     public init(
-        sampling: SamplingMode? = nil,
+        sampling: SamplingMode?,
         temperature: Double? = nil,
         maximumResponseTokens: Int? = nil
     ) {
-        self.sampling = sampling
+        self.samplingMode = sampling
         self.temperature = temperature
         self.maximumResponseTokens = maximumResponseTokens
         self.toolCallingMode = nil
@@ -218,7 +218,7 @@ public struct GenerationOptions: Sendable, Equatable, Codable {
         maximumResponseTokens: Int? = nil,
         toolCallingMode: ToolCallingMode? = nil
     ) {
-        self.sampling = samplingMode
+        self.samplingMode = samplingMode
         self.temperature = temperature
         self.maximumResponseTokens = maximumResponseTokens
         self.toolCallingMode = toolCallingMode
@@ -235,16 +235,17 @@ public struct GenerationOptions: Sendable, Equatable, Codable {
 ///
 /// ```swift
 /// extension MyLanguageModel {
-///     public struct CustomGenerationOptions: AnyLanguageModel.CustomGenerationOptions {
+///     public struct CustomGenerationOptions: CustomGenerationOptions {
 ///         public var customParameter: String?
 ///     }
 /// }
 /// ```
-public protocol CustomGenerationOptions: Equatable, Sendable {}
+public protocol LanguageModelCustomGenerationOptions: Equatable, Sendable {}
+public typealias CustomGenerationOptions = LanguageModelCustomGenerationOptions
 
-extension Never: CustomGenerationOptions {}
+extension Never: LanguageModelCustomGenerationOptions {}
 
-extension Dictionary: CustomGenerationOptions where Key == String, Value == JSONValue {}
+extension Dictionary: LanguageModelCustomGenerationOptions where Key == String, Value == JSONValue {}
 
 /// Storage for model-specific custom options.
 private struct CustomOptionsStorage: Sendable, Equatable, Codable {
@@ -303,12 +304,12 @@ private struct CustomOptionsStorage: Sendable, Equatable, Codable {
 
 /// A type-erased wrapper for custom generation options.
 private struct AnyCustomOptions: Sendable {
-    let value: any CustomGenerationOptions
+    let value: any LanguageModelCustomGenerationOptions
     let typeName: String
-    let equalsImpl: @Sendable (any CustomGenerationOptions) -> Bool
+    let equalsImpl: @Sendable (any LanguageModelCustomGenerationOptions) -> Bool
     let encodeImpl: (@Sendable (any Encoder) throws -> Void)?
 
-    init<T: CustomGenerationOptions>(_ value: T) {
+    init<T: LanguageModelCustomGenerationOptions>(_ value: T) {
         self.value = value
         self.typeName = String(reflecting: T.self)
         self.equalsImpl = { other in

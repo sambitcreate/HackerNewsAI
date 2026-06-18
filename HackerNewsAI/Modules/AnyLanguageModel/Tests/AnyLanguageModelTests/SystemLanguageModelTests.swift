@@ -1,3 +1,4 @@
+#if canImport(Testing) && canImport(AnyLanguageModel)
 import Testing
 import AnyLanguageModel
 
@@ -345,4 +346,6 @@ import AnyLanguageModel
             }
         }
     }
+#endif
+
 #endif

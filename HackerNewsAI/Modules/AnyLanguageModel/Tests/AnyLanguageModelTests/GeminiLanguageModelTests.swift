@@ -1,3 +1,4 @@
+#if canImport(Testing) && canImport(AnyLanguageModel)
 import Foundation
 import JSONSchema
 import Testing
@@ -178,3 +179,5 @@ struct GeminiLanguageModelTests {
         #expect(response.content.contains("30"))
     }
 }
+
+#endif

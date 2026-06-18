@@ -1,9 +1,15 @@
 // LLM Module - HackerNewsAI
 // Copyright 2026
 
-// Re-export AnyLanguageModel for Foundation Models and Anthropic
-@_exported import AnyLanguageModel
+// AnyLanguageModel provides the Anthropic backend and its own session abstraction.
+// It is NOT re-exported: the on-device path talks to FoundationModels directly
+// (see FoundationModelRuntime.swift) and AnyLanguageModel declares colliding
+// names (LanguageModelSession/SystemLanguageModel/GenerationOptions), so we keep
+// imports plain to avoid ambiguity.
+import AnyLanguageModel
 
-// Re-export MLX frameworks
-@_exported import MLXLLM
-@_exported import MLXLMCommon
+// MLX frameworks for the local-model backend
+#if os(macOS) && canImport(MLXLLM) && canImport(MLXLMCommon)
+import MLXLLM
+import MLXLMCommon
+#endif

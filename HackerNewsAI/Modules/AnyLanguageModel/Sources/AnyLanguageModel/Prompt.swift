@@ -1,3 +1,5 @@
+import Foundation
+
 /// A prompt from a person to the model.
 ///
 /// Prompts can contain content written by you, an outside source, or input directly from people using

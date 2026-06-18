@@ -281,7 +281,7 @@ private func convertOptions(_ options: GenerationOptions) -> [String: JSONValue]
     }
 
     // Greedy sampling uses temperature = 0 for deterministic output
-    if case .greedy? = options.sampling?.mode {
+    if case .greedy? = options.samplingMode?.mode {
         ollamaOptions["temperature"] = .double(0.0)
     }
 

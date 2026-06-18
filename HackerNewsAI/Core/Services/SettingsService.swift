@@ -50,7 +50,8 @@ class SettingsService {
 
     private init() {
         let savedProvider = defaults.string(forKey: providerKey) ?? LLMProvider.onDevice.rawValue
-        self.provider = LLMProvider(rawValue: savedProvider) ?? .onDevice
+        let provider = LLMProvider(rawValue: savedProvider) ?? .onDevice
+        self.provider = LLMProvider.availableOnCurrentPlatform.contains(provider) ? provider : .onDevice
         self.anthropicAPIKey = defaults.string(forKey: apiKeyKey) ?? ""
         self.mlxModelId = defaults.string(forKey: mlxModelKey) ?? "mlx-community/Qwen3-0.6B-4bit"
     }

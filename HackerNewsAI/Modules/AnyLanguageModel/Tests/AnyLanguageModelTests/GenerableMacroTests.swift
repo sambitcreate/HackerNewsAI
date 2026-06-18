@@ -1,3 +1,4 @@
+#if canImport(Testing) && canImport(AnyLanguageModel)
 import Testing
 import AnyLanguageModel
 import Foundation
@@ -423,3 +424,5 @@ struct GenerableMacroTests {
         let _ = TestArguments.create(name: "Bob", age: 42)
     }
 #endif  // canImport(Playgrounds)
+
+#endif

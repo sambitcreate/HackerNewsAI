@@ -15,8 +15,7 @@ let package = Package(
     dependencies: [
         // AnyLanguageModel for Foundation Models + Anthropic (no MLX trait needed)
         .package(
-            url: "https://github.com/mattt/AnyLanguageModel",
-            branch: "main"
+            path: "../AnyLanguageModel"
         ),
         // MLX directly from mlx-swift-lm
         .package(
